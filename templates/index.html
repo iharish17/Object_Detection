@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YOLO Object Detection</title>
+</head>
+<body>
+
+<h2>Upload Image for Detection</h2>
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+
+    <select name="mode">
+        <option value="detect">Object Detection</option>
+        <option value="pose">Pose Detection</option>
+    </select>
+
+    <button type="submit">Upload & Detect</button>
+</form>
+
+{% if uploaded_image %}
+    <h3>Output:</h3>
+    <img src="{{ uploaded_image }}" width="500">
+{% endif %}
+
+<hr>
+
+<h2>Live Webcam Detection</h2>
+<a href="{{ url_for('webcam_page') }}">Open Webcam</a>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Webcam YOLO Detection</title>
+</head>
+<body>
+
+<h2>Live Webcam Detection</h2>
+
+<form method="GET" action="/webcam">
+    <label>Camera: </label>
+    <select name="cam">
+        {% for c in cameras %}
+            <option value="{{ c }}" {% if c == selected_cam %}selected{% endif %}>
+                Camera {{ c }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label>Mode: </label>
+    <select name="mode">
+        <option value="detect" {% if mode == 'detect' %}selected{% endif %}>Object Detection</option>
+        <option value="pose" {% if mode == 'pose' %}selected{% endif %}>Pose Detection</option>
+    </select>
+
+    <button type="submit">Apply</button>
+</form>
+
+<br>
+
+<img src="/webcam_feed?cam={{ selected_cam }}&mode={{ mode }}" width="640">
+
+</body>
+</html>
