@@ -18,11 +18,10 @@ app = Flask(__name__)
 app.secret_key = "secret123"
 
 # Load YOLO models
-detect_model = YOLO("yolov8n.pt")
+detect_model = YOLO("yolov8n-oiv7.pt")
 pose_model = YOLO("yolov8n-pose.pt")
 
 
-# ---------- UTIL ----------
 def probe_cameras(max_idx=5):
     """Find available webcams"""
     cams = []
@@ -43,9 +42,6 @@ def draw_detections(frame, boxes, scores, classes, names):
         cv2.putText(frame, label, (x1, y1 - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
     return frame
-
-
-# ---------- ROUTES ----------
 
 @app.route("/", methods=["GET"])
 def index():
